@@ -1,0 +1,542 @@
+{
+  "schemaVersion": 1,
+  "version": "adguard-2.5.1-base-f404d017ca1d-scope2-transport1-signal1",
+  "wrapperScopeRevision": 2,
+  "compatibilityPatches": [
+    {
+      "id": "FEATHER-AG251-FETCH-001",
+      "scriptlet": "json-prune-fetch-response",
+      "originalFunctionSHA256": "a4c5cb48a039ac62234074a0d77999ada3ed0644e7eec61ff8c280f2a27bcdcf",
+      "patchedFunctionSHA256": "cb8a7855cf18d2b7a5de6d979ce05861efc67d1c73138bca4e453940eb3f471b",
+      "adapterSHA256": "862c17ab8507df4793dc1da80034044cffc03d72b66c06ae7867ee3861d38d95",
+      "reason": "One native fetch; normalize URL matching; validate initial/final endpoint and MIME before body read; retain native stream/bodyUsed/clone state and corrected representation headers."
+    },
+    {
+      "id": "FEATHER-AG251-XHR-001",
+      "scriptlet": "json-prune-xhr-response",
+      "originalFunctionSHA256": "c0ee204ec7f4f730b9c8b1332c37245e2f54fb9674ef3c881e47f6f6e1609ba9",
+      "patchedFunctionSHA256": "953628d87f99a91de1d8d5074eac20446daca36aa9cfea0ae9e8037a79b92feb",
+      "adapterSHA256": "b0dc73d961749efe21d62db34cfb672f2664190cc08d62720e9398308d648fb2",
+      "reason": "Use the real XHR and native events/getters; rewrite only completed JSON/text responses with matching initial/final endpoint and MIME; preserve binary bytes and responseText exceptions."
+    },
+    {
+      "id": "FEATHER-AG251-ADSIGNAL-001",
+      "originalFunctionSHA256": {
+        "set-constant": "a4d82fadcc8fff4840d7db491d8b1c8a0586510a9dba3cf561844cf14c0ec073",
+        "json-prune": "a634626c0522764fee22d355d1daa4a9187594f9f5e984a5916dad4c5dd9ea18",
+        "json-prune-fetch-response": "a4c5cb48a039ac62234074a0d77999ada3ed0644e7eec61ff8c280f2a27bcdcf",
+        "json-prune-xhr-response": "c0ee204ec7f4f730b9c8b1332c37245e2f54fb9674ef3c881e47f6f6e1609ba9"
+      },
+      "patchedFunctionSHA256": {
+        "set-constant": "a022205401731b4e61d7307151d808a7ac125677086afe609221e02e401d5bab",
+        "json-prune": "12a88bffd9b08e2cb781bfc5edb0ad0fa1d672fd19b7fe4c369eabb5dd2d7ab3",
+        "json-prune-fetch-response": "2293bfcdcadf631200a6a6f34e4032def696a322cde554339e32d49104f2eddc",
+        "json-prune-xhr-response": "629d9c22128bad680f009b35e009f6c22e3176159688d89a245effed50b2c8b1"
+      },
+      "adapterSHA256": "5ea0ec70f2ab8d5fe8b97da854f2e31173ec3a823778dfeab22625cd8434ab61",
+      "reason": "Optional lexical callback only after confirmed nonempty ad-only suppression/removal; no signals for installs, reads, empty fields, unchanged responses or recovery. Transport events commit only after successful delivery preparation."
+    }
+  ],
+  "injection": {
+    "file": "youtube-upstream.js",
+    "time": "documentStart",
+    "world": "page",
+    "allFrames": true,
+    "integration": "Insert inside the native per-site policy gate; do not stack another pruning engine."
+  },
+  "diagnostics": {
+    "global": "__featherYouTubeUpstream",
+    "configurable": false,
+    "failureIDsLimit": 8,
+    "semantics": "Invoked rules are attempted installations, not proven ad prevention. CoreLibs functions also catch some internal errors."
+  },
+  "adInterventionSignal": {
+    "lexicalCallback": "__FEATHER_AD_INTERVENTION__",
+    "kinds": [
+      "ad-data-suppressed",
+      "ad-data-removed"
+    ],
+    "maximumCallbacks": 1000000,
+    "semantics": "Evidence of nonempty known ad-data suppression/removal, not proof a video ad would have played. Conservative: raw site JavaScript/SSAP/skip paths are not counted."
+  },
+  "scriptlets": {
+    "package": "@adguard/scriptlets",
+    "version": "2.5.1",
+    "tarball": "https://registry.npmjs.org/@adguard/scriptlets/-/scriptlets-2.5.1.tgz",
+    "integrity": "sha512-008B4qm6mXU4mqHOl1HE/jfRa0D/LUX2Lx4k00G45csiBF/fnIGzVivPsT1Q+Uhp9C+zj5tKoekkL39W8HqjzA==",
+    "sourceCommit": "920b92324bac850eecaa07589e67d5ff8bcee037",
+    "sourceArchive": "https://codeload.github.com/AdguardTeam/Scriptlets/tar.gz/refs/tags/v2.5.1",
+    "sourceArchiveSHA256": "61c09e7b6f414602ad20c75816cd81f08025fd42a23efe076efe9294f75e0ebb",
+    "license": "GPL-3.0"
+  },
+  "filters": {
+    "repository": "https://github.com/AdguardTeam/AdguardFilters",
+    "commit": "f404d017ca1d47ff8b1bf0c3dd41b9c258b3ca7a",
+    "commitDateUTC": "2026-10-24T21:39:03Z",
+    "path": "BaseFilter/sections/specific.txt",
+    "url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/f404d017ca1d47ff8b1bf0c3dd41b9c258b3ca7a/BaseFilter/sections/specific.txt",
+    "sha256": "7e994086c6e43e91a712679c1099d990d65f5febb86534fba33524a162089c8c",
+    "license": "GPL-3.0",
+    "selectedLines": [
+      967,
+      968,
+      969,
+      970,
+      998,
+      999,
+      1000,
+      1002,
+      1005,
+      1013,
+      1015,
+      1017,
+      1018,
+      1029,
+      1030,
+      1032,
+      1037,
+      1041,
+      1042,
+      1045,
+      1046,
+      1047,
+      1049,
+      1051,
+      1057,
+      1058,
+      1059
+    ]
+  },
+  "bundleSHA256": "b7fcaee290fed8d48c689a03e3434466881f1eba775f538a234806730127cb1d",
+  "bundleBytes": 133098,
+  "selectedRuleCount": 27,
+  "standaloneScriptletFunctions": [
+    "adjust-setTimeout",
+    "json-prune",
+    "json-prune-fetch-response",
+    "json-prune-xhr-response",
+    "set-constant"
+  ],
+  "rules": [
+    {
+      "id": "adguard-base-L967",
+      "line": 967,
+      "domains": [
+        "youtubekids.com",
+        "youtube-nocookie.com",
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "e4f072b441610e149662b9d46c84dd96ca3219fbb0d7a367a7d8b7187edba405",
+      "kind": "scriptlet",
+      "name": "set-constant",
+      "args": [
+        "ytInitialPlayerResponse.adPlacements",
+        "undefined"
+      ]
+    },
+    {
+      "id": "adguard-base-L968",
+      "line": 968,
+      "domains": [
+        "youtubekids.com",
+        "youtube-nocookie.com",
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "cc2fa33589da574a59e4533d1a389278ffe12a8957a8cb3f403c6fea98b9cea6",
+      "kind": "scriptlet",
+      "name": "set-constant",
+      "args": [
+        "ytInitialPlayerResponse.adSlots",
+        "undefined"
+      ]
+    },
+    {
+      "id": "adguard-base-L969",
+      "line": 969,
+      "domains": [
+        "youtubekids.com",
+        "youtube-nocookie.com",
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "079fc636c32aeb98af73d224f365fdfc9dedb7b45c7f611b423491cde5ce97f5",
+      "kind": "scriptlet",
+      "name": "set-constant",
+      "args": [
+        "ytInitialPlayerResponse.playerAds",
+        "undefined"
+      ]
+    },
+    {
+      "id": "adguard-base-L970",
+      "line": 970,
+      "domains": [
+        "youtubekids.com",
+        "youtube-nocookie.com",
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "ddf174299cdfd99f57b9217ef6ccaf5d71d970402d0e022bb3c0b004b3e290d2",
+      "kind": "scriptlet",
+      "name": "set-constant",
+      "args": [
+        "playerResponse.adPlacements",
+        "undefined"
+      ]
+    },
+    {
+      "id": "adguard-base-L998",
+      "line": 998,
+      "domains": [
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "1114bb0d4997e45bdf4a82dc91d232952a53730d1e23f1bd43afe38d0aabaad1",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "playerResponse.adPlacements playerResponse.adSlots",
+        "playerResponse.streamingData.serverAbrStreamingUrl"
+      ]
+    },
+    {
+      "id": "adguard-base-L999",
+      "line": 999,
+      "domains": [
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "ea8ba49c7689e0bf50c3be34a3eb89f3e2e6c9a0c55887c0af96c5fd6947fae6",
+      "kind": "scriptlet",
+      "name": "json-prune-xhr-response",
+      "args": [
+        "playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots",
+        "",
+        "/playlist\\?list=|\\/player(?!.*(get_drm_license))|watch\\?[tv]=|get_watch\\?/"
+      ]
+    },
+    {
+      "id": "adguard-base-L1000",
+      "line": 1000,
+      "domains": [
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "960d0066b01a36c34fa400ae3c3a26c1ae78a13111c682e398cb32c197cfe5e7",
+      "kind": "scriptlet",
+      "name": "json-prune-fetch-response",
+      "args": [
+        "playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots",
+        "",
+        "/playlist\\?list=|player\\?|watch\\?[tv]=/"
+      ]
+    },
+    {
+      "id": "adguard-base-L1002",
+      "line": 1002,
+      "domains": [
+        "m.youtube.com",
+        "youtubekids.com",
+        "youtube-nocookie.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "41a498a4cfa1048836bc854e5580346e037f831052de61657985aaf491e1b49a",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots"
+      ]
+    },
+    {
+      "id": "adguard-base-L1005",
+      "line": 1005,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "3e894646f79028338ab4d4cc60b89e33e01cda1058530cc232ae59d32f4790c4",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1013",
+      "line": 1013,
+      "domains": [
+        "youtube.com"
+      ],
+      "pathPrefix": "/tv",
+      "sourceSHA256": "28f7c9d36bd5329a80f39877f7f3b176c14a7a9fb36dfe8ab0472c24cb42a8df",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "playerResponse.adPlacements playerResponse.playerAds playerResponse.adSlots adPlacements playerAds adSlots",
+        "",
+        "/https:\\/\\/www\\.youtube\\.com\\/s\\/player\\/.*\\/(?:tv-player-ias\\.vflset\\/tv-player-ias\\.js|tv-player-ias-tcl\\.vflset\\/tv-player-ias-tcl\\.js):/"
+      ]
+    },
+    {
+      "id": "adguard-base-L1015",
+      "line": 1015,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "d99ea17f95cc02412c4adda39006912c4330e21308fdebcb4912c0728db907f8",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1017",
+      "line": 1017,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "88a695d72da73dde7a298336dcb1ff74eb208c91b2c13eb6364a9dc569682b9f",
+      "kind": "scriptlet",
+      "name": "adjust-setTimeout",
+      "args": [
+        "[native code]",
+        "17000",
+        "0.001"
+      ]
+    },
+    {
+      "id": "adguard-base-L1018",
+      "line": 1018,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "653132b647628317979929416b597ed5080f732148e4e5f38e20a65176ce3d9b",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1029",
+      "line": 1029,
+      "domains": [
+        "www.youtube.com",
+        "youtube-nocookie.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "d4b17776b7215436fdd22a7fb983d9358d4fa38e4f2ce54c2c4b2dd5b3e1512d",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1030",
+      "line": 1030,
+      "domains": [
+        "www.youtube.com",
+        "youtube-nocookie.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "67e90b6afbadafff73d1c49d8bce77498e84ff1c004a97f15acaebffa76c1868",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1032",
+      "line": 1032,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "5838ea8175f703aee0a4ac74e7e19b1df673903b2d34f5c9a677ee274f841608",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1037",
+      "line": 1037,
+      "domains": [
+        "youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "f966cae0f88f2d0976abe12ab8cea86d64dc2cf5bdd20df74846a043a420f281",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "entries.[-].command.reelWatchEndpoint.adClientParams.isAd"
+      ]
+    },
+    {
+      "id": "adguard-base-L1041",
+      "line": 1041,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "64832cdf8d726dd4fc4211f05d7db546cfc0aacb11b9e0f4ff08f437d9e4e352",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1042",
+      "line": 1042,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "0e3061751646c5caa1096eff319b00a2b55b6f59e8229e82512434e19ccb781d",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1045",
+      "line": 1045,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "ea68daf4d31a2b62d104370ef7ccd60b2f28f7339b6f273d1a02c7ce8f4a291f",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "contents.twoColumnBrowseResultsRenderer.tabs.[].tabRenderer.content.richGridRenderer.contents.[-].richItemRenderer.content.adSlotRenderer"
+      ]
+    },
+    {
+      "id": "adguard-base-L1046",
+      "line": 1046,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "ffc427541cb781c52d031485f18b5edcef1b192627ee79a984e7a5b0093f6bdf",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "ytInitialData.contents.twoColumnBrowseResultsRenderer.tabs.[].tabRenderer.content.richGridRenderer.contents.[-].richItemRenderer.content.adSlotRenderer"
+      ]
+    },
+    {
+      "id": "adguard-base-L1047",
+      "line": 1047,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "302d21b758521c8e04069f7fe2b27f4f6ceba075663a654db90d5423d582f525",
+      "kind": "site-javascript"
+    },
+    {
+      "id": "adguard-base-L1049",
+      "line": 1049,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "604f0b02de89210576f6e635c4ccf9fe0ebac20731828d29493a800ebe9d55d2",
+      "kind": "scriptlet",
+      "name": "set-constant",
+      "args": [
+        "ytcfg.data_.EXPERIMENT_FLAGS.web_streaming_watch",
+        "false"
+      ]
+    },
+    {
+      "id": "adguard-base-L1051",
+      "line": 1051,
+      "domains": [
+        "www.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "403190941b13b342676d9ec73fc849650e5eb5fa32f353be9ec6bab873d3162d",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "$.playerResponse[?(@.cards&&!@.playabilityStatus.miniplayer)].playerConfig.audioConfig.muteOnStart"
+      ]
+    },
+    {
+      "id": "adguard-base-L1057",
+      "line": 1057,
+      "domains": [
+        "m.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "692fb6df2a8e2b36eac3dd2e098188defbae2886e17b7414f9ec215713bb8844",
+      "kind": "scriptlet",
+      "name": "json-prune-fetch-response",
+      "args": [
+        "$..itemSectionRenderer.contents[?(@.adSlotRenderer)]",
+        "",
+        "/get_watch"
+      ]
+    },
+    {
+      "id": "adguard-base-L1058",
+      "line": 1058,
+      "domains": [
+        "m.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "43e0ee7e611442067de47af3b3e3028c8f57435c879a545738b6ee53fdb90cb8",
+      "kind": "scriptlet",
+      "name": "json-prune",
+      "args": [
+        "playerResponse.messages.[].youThereRenderer"
+      ]
+    },
+    {
+      "id": "adguard-base-L1059",
+      "line": 1059,
+      "domains": [
+        "m.youtube.com"
+      ],
+      "pathPrefix": null,
+      "sourceSHA256": "e70a0bcc062695656e93bebe462c9fc04b47dfe82b5010c3bbc44cfc99945852",
+      "kind": "site-javascript"
+    }
+  ],
+  "platformSelection": {
+    "environment": "Feather WKWebView with CoreLibs scriptlets 2.5.1; non-Firefox, no native response-body rewriting.",
+    "hostCanonicalization": "Wrapper scope uses lowercase host with surrounding whitespace and trailing dots removed, matching the native policy. Selected rule text is unchanged; function compatibility/evidence patches are recorded separately.",
+    "includedBrowserFallbackLines": [
+      998,
+      999,
+      1000
+    ],
+    "excludedFirefoxOnlyLines": [
+      1007,
+      1010
+    ],
+    "exceptedOldRecoveryLines": {
+      "old": [
+        1020,
+        1021
+      ],
+      "exceptions": [
+        1025,
+        1026
+      ]
+    },
+    "shorts": "Use modern library-backed line 1037; exclude legacy Safari line 1039 because vendored 2.5.1 exceeds the upstream >=2.2.7 requirement.",
+    "tvPathAdaptation": "Line 1013 $path=/tv is restricted to pathname prefix /tv."
+  },
+  "notImplemented": [
+    {
+      "lines": [
+        976,
+        978,
+        979,
+        980,
+        981,
+        982,
+        1003
+      ],
+      "reason": "Native document/network JSON prune/replace requires response-body interception; page script fallbacks are included where upstream supplies them."
+    },
+    {
+      "lines": [
+        1012,
+        1079
+      ],
+      "reason": "Network/CDN blocking is not part of this JavaScript bundle. No broad googlevideo rule is generated."
+    },
+    {
+      "reason": "Upstream frame workaround line 1015 copies fetch/Request only; no claim to defeat JSON.parse clean-frame recovery or every sandbox configuration."
+    },
+    {
+      "reason": "Includes current upstream SSAP/Promise decoder interventions; universal UMP/SABR/SSAP efficacy is unproven and requires native live testing."
+    }
+  ],
+  "sourceArchiveSHA256": "61c09e7b6f414602ad20c75816cd81f08025fd42a23efe076efe9294f75e0ebb",
+  "noRuntimeRemoteCode": true
+}

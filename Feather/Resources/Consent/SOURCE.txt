@@ -1,0 +1,4 @@
+DuckDuckGo autoconsent 16.60.0 (https://github.com/duckduckgo/autoconsent), MPL-2.0, unmodified:
+  autoconsent.js       = dist/autoconsent.playwright.js
+  compact-rules.json   = rules/compact-rules.json
+Update with: npm pack @duckduckgo/autoconsent, then copy those two files.

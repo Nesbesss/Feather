@@ -1,0 +1,9 @@
+// Portable local builds use an ad-hoc signature. For a stable Keychain identity,
+// override these settings in the ignored Local.xcconfig file.
+CODE_SIGN_STYLE = Manual
+CODE_SIGN_IDENTITY = -
+DEVELOPMENT_TEAM =
+ENABLE_HARDENED_RUNTIME = NO
+
+// Never commit certificates, provisioning profiles, or account credentials.
+#include? "Local.xcconfig"

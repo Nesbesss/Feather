@@ -1,0 +1,10 @@
+// Optional: copy to Support/Local.xcconfig for your own development signature.
+// Keeping this identity stable helps Keychain trust survive local rebuilds.
+// CODE_SIGN_IDENTITY = Apple Development
+// DEVELOPMENT_TEAM = YOUR_TEAM_ID
+
+// Enable passkeys only after Apple grants the Web Browser Public Key Credential
+// capability for your App ID and a matching provisioning profile is installed.
+// Claiming this entitlement without an approved profile prevents launch.
+// CODE_SIGN_ENTITLEMENTS = Support/Feather-Passkeys.entitlements
+// PROVISIONING_PROFILE_SPECIFIER = Feather Passkeys

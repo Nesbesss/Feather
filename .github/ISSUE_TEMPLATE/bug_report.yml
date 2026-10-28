@@ -1,0 +1,46 @@
+name: Bug report
+description: Report a reproducible problem in Feather.
+title: "[Bug]: "
+body:
+  - type: markdown
+    attributes:
+      value: "For sensitive security reports, read SECURITY.md first. Remove private browsing and account data from all attachments."
+  - type: input
+    id: version
+    attributes:
+      label: Feather version
+      description: Find it in Feather → About Feather; include the build number if available.
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: macOS version and Mac architecture
+      placeholder: macOS 26.0, Apple Silicon
+    validations:
+      required: true
+  - type: textarea
+    id: reproduce
+    attributes:
+      label: Steps to reproduce
+      description: Include a public example URL or local fixture when useful.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+      description: Add screenshots or sanitized logs if useful.
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context
+      description: For example, enabled extensions, relevant settings, or whether a new space also reproduces the issue.

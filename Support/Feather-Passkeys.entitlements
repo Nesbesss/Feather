@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<!-- Lets WebKit use passkeys and security keys for any website (Apple-granted). -->
+	<key>com.apple.developer.web-browser.public-key-credential</key>
+	<true/>
+</dict>
+</plist>

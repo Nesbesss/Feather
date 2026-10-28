@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="200 200 600 600" fill="none">
+  <title>Feather</title>
+  <defs>
+    <linearGradient id="glass" x1="400" y1="340" x2="625" y2="737" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#fff"/><stop offset=".5" stop-color="#e8f7ff"/><stop offset="1" stop-color="#7dbadb"/>
+    </linearGradient>
+    <filter id="shadow" x="-30%" y="-30%" width="160%" height="160%"><feDropShadow dx="0" dy="14" stdDeviation="11" flood-color="#1c4f6e" flood-opacity=".13"/></filter>
+    <clipPath id="blade"><path d="M324,708 C341,662 360,622 378,589 C337,535 348,462 411,402 C488,329 610,282 714,271 C732,375 694,477 623,549 C606,566 586,576 565,581 L600,525 C573,550 547,590 516,611 L472,628 L506,574 C442,622 389,664 353,723 C341,742 316,731 324,708 Z"/></clipPath>
+  </defs>
+  <path d="M324,708 C341,662 360,622 378,589 C337,535 348,462 411,402 C488,329 610,282 714,271 C732,375 694,477 623,549 C606,566 586,576 565,581 L600,525 C573,550 547,590 516,611 L472,628 L506,574 C442,622 389,664 353,723 C341,742 316,731 324,708 Z" fill="url(#glass)" stroke="#fff" stroke-opacity=".82" stroke-width="3" stroke-linejoin="round" filter="url(#shadow)"/>
+  <g clip-path="url(#blade)" stroke-linecap="round">
+    <path d="M341,716 C420,574 526,444 650,341" stroke="#4587b0" stroke-opacity=".5" stroke-width="9"/>
+    <path d="M341,716 C420,574 526,444 650,341" transform="translate(-3 -2)" stroke="#fff" stroke-opacity=".85" stroke-width="3"/>
+  </g>
+</svg>

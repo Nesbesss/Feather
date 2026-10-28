@@ -1,0 +1,52 @@
+name: Prepare release candidate
+
+# Downloads remain reviewable artifacts until a maintainer explicitly publishes.
+on:
+  workflow_dispatch:
+    inputs:
+      version:
+        description: 'App version (three numeric components)'
+        required: true
+        default: '0.1.0'
+        type: string
+      build:
+        description: 'Build number'
+        required: true
+        default: '1'
+        type: string
+
+permissions:
+  contents: read
+
+jobs:
+  preview:
+    runs-on: macos-26
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Install XcodeGen
+        run: brew list xcodegen >/dev/null 2>&1 || brew install xcodegen
+      - name: Build universal preview
+        env:
+          FEATHER_VERSION: ${{ inputs.version }}
+          FEATHER_BUILD: ${{ inputs.build }}
+        run: >-
+          Tools/Release/build.sh --version "$FEATHER_VERSION"
+          --build "$FEATHER_BUILD" --output-dir build/release
+      - name: Install DMG packaging dependencies
+        run: |
+          python3 -m venv build/package-venv
+          build/package-venv/bin/python -m pip install -r Tools/Release/requirements.txt
+      - name: Package DMG, ZIP and checksums
+        run: >-
+          build/package-venv/bin/python Tools/Release/package.py
+          --app build/release/Feather.app --output-dir build/release-artifacts
+      - name: Save candidate for review
+        uses: actions/upload-artifact@cf430e030ddbb5b0abf93d22962f4752f3646cd9 # v7.0.2
+        with:
+          name: feather-release-preview
+          path: build/release-artifacts/*
+          if-no-files-found: error
+          retention-days: 30

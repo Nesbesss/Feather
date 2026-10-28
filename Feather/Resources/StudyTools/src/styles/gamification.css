@@ -1,0 +1,270 @@
+#st-wrapped-invoke {
+    width: 50px;
+    padding: 0;
+    margin-inline: auto;
+    background-image: linear-gradient(35deg, #ffffff, #7cc4ff9c);
+    background-clip: text;
+    -webkit-background-clip: text;
+    text-fill-color: transparent;
+    color: transparent;
+    border: none;
+    border-radius: var(--st-border-radius);
+    outline: none;
+    font: 600 30px/50px 'Font Awesome 6 Pro';
+    text-align: center;
+    opacity: 0.5;
+    cursor: pointer;
+    transition: scale 200ms, opacity 200ms;
+}
+
+#st-wrapped-invoke.spinning {
+    animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    to {
+        rotate: 359.9deg;
+    }
+}
+
+#st-wrapped-invoke:hover,
+#st-wrapped-invoke:focus-visible {
+    scale: 1.1;
+    opacity: 1;
+    transition: scale 100ms, opacity 100ms;
+}
+
+#st-wrapped-invoke:focus-visible {
+    outline: 2px solid var(--st-foreground-primary);
+}
+
+#st-wrapped-invoke-tip {
+    position: absolute;
+    top: 24px;
+    left: 58px;
+    height: auto;
+    background-color: var(--st-accent-primary-dark);
+    color: var(--st-contrast-accent);
+    box-shadow: 0 0 8px 0 rgba(var(--st-shadow-value), var(--st-shadow-value), var(--st-shadow-value), var(--st-shadow-alpha));
+    z-index: 100;
+    transform-origin: left center;
+    transform: none;
+    opacity: 1;
+    padding: 7px 13px;
+    border: 1px solid var(--st-contrast-accent);
+    border-radius: var(--st-border-radius);
+    font: 12px var(--st-font-family-secondary);
+    transition: transform 200ms ease 0s, opacity 200ms ease 0s;
+}
+
+#st-wrapped-invoke-tip:after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent var(--st-contrast-accent) transparent transparent;
+}
+
+#st-wrapped-invoke-tip.hidden {
+    transform: scale(0);
+    opacity: 0;
+}
+
+#st-wrapped {
+    padding: 0;
+    border-radius: 16px;
+    border: 1px solid #444;
+    outline: none;
+    background-color: transparent;
+    user-select: none;
+}
+
+#st-wrapped::backdrop {
+    background-color: #121212f7;
+}
+
+#st-wrapped-years-wrapper {
+    width: min(calc(100vw - 64px), 1300px);
+    height: min(calc(100vh - 64px), 850px);
+    overflow: hidden;
+
+    container-type: inline-size;
+    display: flex;
+    gap: 32px;
+    background-color: transparent;
+}
+
+.st-wrapped-year {
+    --pattern: linear-gradient(to right, transparent, transparent);
+    --gradient: linear-gradient(to right, #485563, #29323c);
+    min-height: min(calc(100vh - 64px), 850px);
+    max-height: min(calc(100vh - 64px), 850px);
+    flex: 100% 0 0;
+
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-auto-rows: 28px;
+    grid-auto-flow: row dense;
+    gap: 16px;
+    padding: 32px;
+    padding-top: 40px;
+
+    overflow-y: auto;
+    border-radius: 16px;
+    background-image: radial-gradient(at left top, #20283110, #1218201c), var(--pattern), var(--gradient);
+    color: #ffffff;
+}
+
+@container (max-width: 1000px) {
+    .st-wrapped-year {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+.st-wrapped-year-title {
+    grid-column: 1 / -1;
+    font: 500 28px/2rem arboria, sans-serif;
+    translate: 0 -8px;
+}
+
+.st-wrapped-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 32px;
+    padding-top: 36px;
+
+    background: #ffffff33;
+    border-radius: 16px;
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    border: 1px solid #ffffff11;
+
+    font: 500 22px arboria, sans-serif;
+    color: #ffffff;
+    text-align: left;
+    text-wrap: balance;
+    user-select: none;
+    overflow: hidden;
+}
+
+.st-wrapped-card.grid {
+    display: grid;
+    gap: 12px;
+}
+
+.st-wrapped-card.interactable,
+.st-wrapped-card.external-link {
+    cursor: pointer;
+    transition: transform 200ms;
+}
+
+.st-wrapped-card.interactable:hover,
+.st-wrapped-card.external-link:hover {
+    transform: scale(1.02);
+}
+
+.st-wrapped-card.interactable:active,
+.st-wrapped-card.external-link:active {
+    transform: scale(0.97);
+}
+
+.st-wrapped-card.interactable[data-pages][data-page]::after {
+    content: attr(data-page) '/' attr(data-pages);
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #ffffff66;
+    font: 14px var(--st-font-family-secondary);
+}
+
+.st-wrapped-card.external-link::after {
+    content: '';
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    color: #ffffff66;
+    font: 500 16px "Font Awesome 6 Pro";
+}
+
+.st-wrapped-card[data-icon]::before {
+    content: attr(data-icon);
+    position: absolute;
+    top: 12px;
+    left: 12px;
+    color: #ffffff66;
+    font: 600 16px "Font Awesome 6 Pro";
+}
+
+.st-wrapped-card .st-w-metric {
+    font: 500 42px arboria, sans-serif;
+    color: #ffffff;
+    text-align: center;
+}
+
+.st-wrapped-card .st-w-metric-med {
+    font: 500 36px arboria, sans-serif;
+    color: #ffffff;
+    text-align: center;
+}
+
+.st-wrapped-card .st-w-text {
+    font: 500 22px arboria, sans-serif;
+    color: #ffffff;
+    text-align: center;
+}
+
+.st-wrapped-card .st-w-text-small {
+    font: 500 18px arboria, sans-serif;
+    color: #ffffffdd;
+    text-align: center;
+}
+
+.st-wrapped-card .st-w-text-tiny {
+    font: 500 16px arboria, sans-serif;
+    color: #ffffffdd;
+    text-align: center;
+}
+
+.st-wrapped-card .st-w-line-vertical {
+    height: 100%;
+    border-left: 1px solid #ffffff33;
+}
+
+#st-wrapped .st-button.icon {
+    color: #ffffff;
+}
+
+#st-wrapped-esc {
+    position: absolute;
+    top: 32px;
+    right: 32px;
+}
+
+#st-wrapped-info {
+    position: absolute;
+    top: 32px;
+    right: 68px;
+}
+
+#st-wrapped-next {
+    position: absolute;
+    top: 32px;
+    right: 104px;
+}
+
+#st-wrapped-prev {
+    position: absolute;
+    top: 32px;
+    right: 140px;
+}
+
+.st-w-grade-chart, .st-w-bar-chart {
+    width: 100%;
+    height: 100%;
+}

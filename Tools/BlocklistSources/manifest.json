@@ -1,0 +1,32 @@
+{
+  "schemaVersion": 1,
+  "name": "HaGeZi Multi LIGHT",
+  "repository": "https://github.com/hagezi/dns-blocklists",
+  "commit": "6782a0d55068c13b08c5d583395ccd4b3540a84e",
+  "commitDateUTC": "2026-10-28T10:24:27Z",
+  "listVersion": "2026.1028.0926.19",
+  "license": "GPL-3.0",
+  "upstreamEntries": 73103,
+  "files": [
+    {
+      "path": "hagezi-light-domains.txt",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/6782a0d55068c13b08c5d583395ccd4b3540a84e/wildcard/light-onlydomains.txt",
+      "sha256": "40d3230f935c6f1e437fa2d7dfda1e01c333ad52b1dfa647fa53007830e2eb03"
+    },
+    {
+      "path": "LICENSE-HaGeZi.txt",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/6782a0d55068c13b08c5d583395ccd4b3540a84e/LICENSE",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986"
+    },
+    {
+      "path": "UPSTREAM-FAQ.md",
+      "url": "https://raw.githubusercontent.com/hagezi/dns-blocklists/6782a0d55068c13b08c5d583395ccd4b3540a84e/FAQ.md",
+      "sha256": "b3734b0c8dd7fa6fda0af2ba23047c9cfb888e8084ff60340d2a2822e2bf4eae"
+    }
+  ],
+  "output": {
+    "path": "Feather/Resources/Blocklist/network.json",
+    "rules": 73103,
+    "sha256": "46439726803f2b0c148dc6d2690a97c9a770e4db326ba38ca07dd9a2da6e4a28"
+  }
+}

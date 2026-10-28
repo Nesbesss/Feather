@@ -1,0 +1,20 @@
+[
+  {
+    "trigger": {
+      "url-filter": ".*"
+    },
+    "action": {
+      "type": "css-display-none",
+      "selector": "ins.adsbygoogle, .adsbygoogle, [id^='div-gpt-ad'], [id^='google_ads_iframe'], [data-google-query-id], amp-ad, amp-embed[type='taboola'], [id^='taboola-'], .trc_related_container, .OUTBRAIN, [data-widget-id^='AR_'], iframe[src*='doubleclick.net'], iframe[src*='googlesyndication.com']"
+    }
+  },
+  {
+    "trigger": {
+      "url-filter": ".*"
+    },
+    "action": {
+      "type": "css-display-none",
+      "selector": "#credential_picker_container, #credential_picker_iframe, iframe[src*='accounts.google.com/gsi/iframe/select']"
+    }
+  }
+]

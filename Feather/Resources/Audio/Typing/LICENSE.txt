@@ -1,0 +1,15 @@
+Feather typing sound bank — source and license
+
+Recorded source: Mechanical keyboard typing sounds by Reina0613
+https://freesound.org/people/Reina0613/sounds/709460/
+License: Creative Commons CC0 1.0 Universal
+https://creativecommons.org/publicdomain/zero/1.0/
+
+Derived from the public HQ MP3 preview, SHA-256:
+2290af8dd13cbaa8d30d8b9f32bc7606e556db8127de4912ee3633a3e6c2f880
+
+Edits: individual transient cuts, mono conversion, filtering, broad EQ,
+small playback-rate shifts, level shaping, and short edge fades.
+The six output family names describe edited timbres. Exact original keys
+cannot be identified from the recording and are not claimed.
+Provenance is supplied for traceability, without an extra use restriction.

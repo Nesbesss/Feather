@@ -1,0 +1,108 @@
+name: Feather
+options:
+  bundleIdPrefix: dev.nesbes
+  deploymentTarget:
+    macOS: "26.0"
+  createIntermediateGroups: true
+settings:
+  base:
+    SWIFT_VERSION: "5.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    MACOSX_DEPLOYMENT_TARGET: "26.0"
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    CLANG_ENABLE_OBJC_ARC: YES
+    MARKETING_VERSION: "0.1.0"
+    CURRENT_PROJECT_VERSION: "1"
+targets:
+  Feather:
+    type: application
+    platform: macOS
+    configFiles:
+      Debug: Support/Signing.xcconfig
+      Release: Support/Signing.xcconfig
+    sources:
+      - path: Feather
+        excludes:
+          - Resources/Blocklist
+          - Resources/Consent
+          - Resources/Reader
+          - Resources/YouTube
+          - Resources/Audio
+          - Resources/StudyTools
+      # Copied as folders so the app finds Blocklist/, Consent/ and Reader/ by name.
+      - path: Feather/Resources/Blocklist
+        type: folder
+        buildPhase: resources
+      - path: Feather/Resources/Consent
+        type: folder
+        buildPhase: resources
+      - path: Feather/Resources/Reader
+        type: folder
+        buildPhase: resources
+      - path: Feather/Resources/YouTube
+        type: folder
+        buildPhase: resources
+      - path: Feather/Resources/Audio
+        type: folder
+        buildPhase: resources
+      - path: Feather/Resources/StudyTools
+        type: folder
+        buildPhase: resources
+    settings:
+      base:
+        PRODUCT_NAME: Feather
+        PRODUCT_BUNDLE_IDENTIFIER: dev.nesbes.Feather
+        INFOPLIST_FILE: Support/Info.plist
+        GENERATE_INFOPLIST_FILE: NO
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SWIFT_OBJC_BRIDGING_HEADER: Feather/SPI/Feather-Bridging-Header.h
+        ENABLE_APP_SANDBOX: NO
+    scheme:
+      testTargets:
+        - FeatherTests
+  FeatherTests:
+    type: bundle.unit-test
+    platform: macOS
+    sources:
+      - path: FeatherTests
+      # Pure logic is compiled straight into the tests, so they run without launching the app.
+      - path: Feather/Engine/SleepPolicy.swift
+      - path: Feather/Engine/WebExtensionStore.swift
+      - path: Feather/Engine/URLInput.swift
+      - path: Feather/Engine/BlocklistConverter.swift
+      - path: Feather/Engine/YouTubeAdBlocker.swift
+      - path: Feather/App/PreferenceValue.swift
+      - path: Feather/App/FirstRunPolicy.swift
+      - path: Feather/Welcome/TourProgress.swift
+      - path: Feather/Welcome/ClickSoundPolicy.swift
+      - path: Feather/Welcome/TypingGesturePolicy.swift
+      - path: Feather/Welcome/TypingSoundDesign.swift
+      - path: Feather/Welcome/TypingSoundPlayer.swift
+      - path: Feather/Welcome/WelcomeSound.swift
+      - path: Feather/Welcome/WelcomePlaybackState.swift
+      - path: Feather/Welcome/LaunchSplashMotion.swift
+      - path: Feather/Resources/Audio
+        type: folder
+        buildPhase: resources
+      - path: Feather/Engine/FaviconRetryPolicy.swift
+      - path: Feather/Model/SessionRecords.swift
+      - path: Feather/Model/HistoryStore.swift
+      - path: Feather/Engine/Passwords/SiteMatcher.swift
+      - path: Feather/Engine/Passwords/PasswordCSV.swift
+      - path: Feather/Engine/Passwords/StrongPassword.swift
+      - path: Feather/Engine/Passwords/PasswordStore.swift
+      - path: Feather/Engine/ConsentRules.swift
+      - path: Feather/Engine/LinkCleaner.swift
+      - path: Feather/Engine/ArchivePolicy.swift
+      - path: Feather/Engine/Autocomplete.swift
+      - path: Feather/Engine/FavoriteSuggestions.swift
+      - path: Feather/Engine/SidebarPolicy.swift
+      - path: Feather/Engine/TabClustering.swift
+      - path: Feather/Engine/HDBSCAN.swift
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: dev.nesbes.FeatherTests
+        GENERATE_INFOPLIST_FILE: YES
+        CODE_SIGN_IDENTITY: "-"
+        CODE_SIGN_STYLE: Manual

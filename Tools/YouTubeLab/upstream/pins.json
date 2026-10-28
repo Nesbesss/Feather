@@ -1,0 +1,23 @@
+{
+  "schemaVersion": 1,
+  "scriptlets": {
+    "package": "@adguard/scriptlets",
+    "version": "2.5.1",
+    "tarball": "https://registry.npmjs.org/@adguard/scriptlets/-/scriptlets-2.5.1.tgz",
+    "integrity": "sha512-008B4qm6mXU4mqHOl1HE/jfRa0D/LUX2Lx4k00G45csiBF/fnIGzVivPsT1Q+Uhp9C+zj5tKoekkL39W8HqjzA==",
+    "sourceCommit": "920b92324bac850eecaa07589e67d5ff8bcee037",
+    "sourceArchive": "https://codeload.github.com/AdguardTeam/Scriptlets/tar.gz/refs/tags/v2.5.1",
+    "sourceArchiveSHA256": "61c09e7b6f414602ad20c75816cd81f08025fd42a23efe076efe9294f75e0ebb",
+    "license": "GPL-3.0"
+  },
+  "filters": {
+    "repository": "https://github.com/AdguardTeam/AdguardFilters",
+    "commit": "f404d017ca1d47ff8b1bf0c3dd41b9c258b3ca7a",
+    "commitDateUTC": "2026-10-24T21:39:03Z",
+    "path": "BaseFilter/sections/specific.txt",
+    "url": "https://raw.githubusercontent.com/AdguardTeam/AdguardFilters/f404d017ca1d47ff8b1bf0c3dd41b9c258b3ca7a/BaseFilter/sections/specific.txt",
+    "sha256": "7e994086c6e43e91a712679c1099d990d65f5febb86534fba33524a162089c8c",
+    "license": "GPL-3.0",
+    "selectedLines": [967, 968, 969, 970, 998, 999, 1000, 1002, 1005, 1013, 1015, 1017, 1018, 1029, 1030, 1032, 1037, 1041, 1042, 1045, 1046, 1047, 1049, 1051, 1057, 1058, 1059]
+  }
+}

@@ -1,0 +1,1 @@
+Mozilla Readability 0.6.0 (https://github.com/mozilla/readability), Apache-2.0, unmodified.
